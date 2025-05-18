@@ -1,0 +1,1 @@
+group = "starry.adventure.examples"
