@@ -51,7 +51,7 @@ class ListOperator<T : Any>(
 }
 
 
-fun <T : Any> AbstractParser<T>.list(
+fun <T : Any> Parser<T>.list(
     prefix: String? = "(",
     suffix: String? = ")",
     separator: String? = ",",

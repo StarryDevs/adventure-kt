@@ -25,5 +25,5 @@ class RepeatingOperator<T : Any>(val element: Parser<T>, val min: Int = 0, val m
 
 }
 
-fun <T : Any> AbstractParser<T>.repeat(min: Int = 0, max: Int = Int.MAX_VALUE) = RepeatingOperator(this, min, max)
-fun <T : Any> AbstractParser<T>.repeat(range: IntRange) = RepeatingOperator(this, range.start, range.endInclusive)
+fun <T : Any> Parser<T>.repeat(min: Int = 0, max: Int = Int.MAX_VALUE) = RepeatingOperator(this, min, max)
+fun <T : Any> Parser<T>.repeat(range: IntRange) = RepeatingOperator(this, range.start, range.endInclusive)
