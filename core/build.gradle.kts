@@ -13,6 +13,7 @@ repositories {
 
 dependencies {
     testImplementation(kotlin("test"))
+    implementation(kotlin("reflect"))
 
     api(libs.kotlinx.serialization.json)
     api(libs.kotlinx.coroutines)
