@@ -1,16 +1,17 @@
 package starry.adventure.core.event
 
+import starry.adventure.core.util.Wrapped
 import kotlin.reflect.KClass
 import kotlin.reflect.full.isSuperclassOf
 
-open class WrappedEvent<T : Event>(val eventBus: EventBus, val callback: (WrappedEvent<T>) -> Unit, val wrappedEvent: T) {
+open class WrappedEvent<T : Event>(val eventBus: EventBus, val callback: (WrappedEvent<T>) -> Unit, wrappedEvent: T) : Wrapped<T>(wrappedEvent) {
 
-    fun isEvent(eventType: KClass<*>) = eventType.isInstance(wrappedEvent)
+    fun isEvent(eventType: KClass<*>) = eventType.isInstance(unwrap())
 
     inline fun <reified T : Event> isEvent() = isEvent(T::class)
 
     inline fun <reified T : Event> isEvent(block: (T) -> Unit) {
-        if (isEvent<T>()) block(wrappedEvent as T)
+        if (isEvent<T>()) block(unwrap() as T)
     }
 
 }

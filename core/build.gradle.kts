@@ -17,6 +17,8 @@ dependencies {
 
     api(libs.kotlinx.serialization.json)
     api(libs.kotlinx.coroutines)
+    api(libs.arrow.core)
+    api(libs.guava)
 }
 
 tasks.test {
