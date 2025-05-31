@@ -47,7 +47,7 @@ open class EventBus(val name: String) {
 
     fun <T : Event> emit(event: T) = this.also {
         for (pair in listListeners(event.javaClass.kotlin)) {
-            event.setEventBus(this)
+            event.bus = this
             pair.second(WrappedEvent<Event>(this, pair.second, event))
         }
     }

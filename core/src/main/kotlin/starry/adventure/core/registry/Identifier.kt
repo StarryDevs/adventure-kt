@@ -10,6 +10,7 @@ import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
 import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
+import kotlin.reflect.jvm.jvmName
 
 object Identifiers {
 
@@ -57,14 +58,13 @@ object Identifiers {
 
 }
 
-
 @Serializable(with = Identifier.IdentifierSerializer::class)
 class Identifier(private val namespace: String, path: String) : Iterable<String> {
 
     object IdentifierSerializer : KSerializer<Identifier> {
 
         override val descriptor: SerialDescriptor
-            get() = PrimitiveSerialDescriptor("Identifier", PrimitiveKind.STRING)
+            get() = PrimitiveSerialDescriptor(Identifier::class.jvmName, PrimitiveKind.STRING)
 
         override fun deserialize(decoder: Decoder) =
             Identifiers.parseOrThrow(decoder.decodeString())

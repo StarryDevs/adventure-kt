@@ -4,15 +4,12 @@ import com.google.common.collect.HashBiMap
 
 interface IRegistry <T> : Iterable<Pair<Identifier, T>> {
 
-    fun freeze()
-    fun unfreeze()
-    fun isFrozen(): Boolean
-
     fun getRegistryKey(): ResourceKey<IRegistry<T>>
 
     fun tags(): ITagManager<T>
 
     fun register(name: Identifier, value: () -> T): T
+    fun unregister(name: Identifier)
 
     fun contains(key: Identifier): Boolean
     fun contains(value: T): Boolean
@@ -29,17 +26,6 @@ open class Registry<T>(private val registryKey: ResourceKey<IRegistry<T>>, priva
     }
 
     protected val entries = HashBiMap.create<Identifier, T>()
-    private var isFrozen: Boolean = true
-
-    override fun freeze() {
-        isFrozen = true
-    }
-
-    override fun unfreeze() {
-        isFrozen = false
-    }
-
-    override fun isFrozen() = isFrozen
 
     override fun tags() = tagManager
 
@@ -48,9 +34,12 @@ open class Registry<T>(private val registryKey: ResourceKey<IRegistry<T>>, priva
     override operator fun contains(key: Identifier) = key in entries
     override operator fun contains(value: T) = value in entries.inverse()
 
+    override fun unregister(name: Identifier) {
+        entries.remove(name)
+    }
+
     @Suppress("UNCHECKED_CAST")
     override fun register(name: Identifier, value: () -> T) = value().also {
-        if (isFrozen) throw IllegalStateException("Registry is already frozen")
         if (name in this || it in this) throw IllegalStateException("Duplicate registry entry: $name")
         entries[name] = it
         onRegistry?.invoke(name, it)
