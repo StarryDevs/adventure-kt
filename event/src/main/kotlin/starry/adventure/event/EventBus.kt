@@ -1,4 +1,4 @@
-package starry.adventure.core.event
+package starry.adventure.event
 
 import starry.adventure.core.util.Wrapped
 import kotlin.reflect.KClass

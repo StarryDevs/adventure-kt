@@ -1,4 +1,4 @@
-package starry.adventure.core.event
+package starry.adventure.event
 
 abstract class Event {
 

@@ -1,4 +1,4 @@
-package starry.adventure.core.registry
+package starry.adventure.registry
 
 import java.util.*
 import kotlin.collections.iterator

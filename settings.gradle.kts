@@ -5,6 +5,8 @@ plugins {
 rootProject.name = "adventure-kt"
 
 include(
-    "core", "brigadier", "parser",
+    "core",
+    "brigadier", "dfu", "event", "registry",
+    "parser",
     "examples", "examples:command"
 )

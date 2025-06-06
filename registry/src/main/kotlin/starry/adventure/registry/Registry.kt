@@ -1,6 +1,7 @@
-package starry.adventure.core.registry
+package starry.adventure.registry
 
 import com.google.common.collect.HashBiMap
+import kotlin.collections.iterator
 
 interface IRegistry <T> : Iterable<Pair<Identifier, T>> {
 

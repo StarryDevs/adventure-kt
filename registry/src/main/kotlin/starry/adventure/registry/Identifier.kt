@@ -1,4 +1,4 @@
-package starry.adventure.core.registry
+package starry.adventure.registry
 
 import arrow.core.None
 import arrow.core.Option
@@ -10,7 +10,6 @@ import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
 import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
-import kotlin.reflect.jvm.jvmName
 
 object Identifiers {
 

@@ -8,6 +8,7 @@ import starry.adventure.parser.symbol
 import starry.adventure.parser.util.ParserSequence
 import starry.adventure.parser.util.rule
 import starry.adventure.parser.util.singleLineString
+import starry.adventure.parser.whitespace
 
 object JsonParser {
 
@@ -44,6 +45,7 @@ object JsonParser {
     val jsonObject = jsonObject()
 
     private fun json(): ParserSequence<Any> = rule("Json") {
+        +whitespace
         +choose(jsonObject, jsonArray, jsonLiteral)
     }
 

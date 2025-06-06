@@ -5,20 +5,21 @@ plugins {
     id("maven-publish")
 }
 
-group = "starry.adventure.core"
+group = "starry.adventure.dfu"
 
 repositories {
     mavenCentral()
+
+    maven("https://libraries.minecraft.net")
+    maven("https://jitpack.io")
 }
 
 dependencies {
     testImplementation(kotlin("test"))
 
-    api(kotlin("reflect"))
+    api(libs.dfu)
     api(libs.kotlinx.serialization.json)
     api(libs.kotlinx.coroutines)
-    api(libs.arrow.core)
-    api(libs.guava)
 }
 
 tasks.test {

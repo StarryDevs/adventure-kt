@@ -1,8 +1,14 @@
 package starry.adventure.core.util
 
-open class Wrapped<T>(private val value: T) {
+interface IWrapped<T> {
 
-    fun unwrap() = value
+    fun unwrap(): T
+
+}
+
+open class Wrapped<T>(private val value: T) : IWrapped<T> {
+
+    override fun unwrap() = value
 
 }
 
