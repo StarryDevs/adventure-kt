@@ -34,7 +34,7 @@ fun <T : Any> CharBuffer.parse(parser: Parser<T>, state: Parser.State = Parser.S
 
 val whitespace by rule {
     var result = ""
-    while (buffer.peek().isWhitespace())
+    while (buffer.hasRemaining() && buffer.peek().isWhitespace())
         result += buffer.get()
     result
 }
